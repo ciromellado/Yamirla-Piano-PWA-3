@@ -1,0 +1,627 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6e0d4;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h2 {
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.vst-container {
+    background: linear-gradient(145deg, #3a4149, #23282e 60%, #15181c 100%);
+    color: #e0e0e0;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255, 255, 255, 0.25), inset 0 -2px 5px rgba(0, 0, 0, 0.6);
+    border: 1px solid #5a6572;
+    max-width: 95%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+#status {
+    font-size: 0.85rem;
+    color: #a3e635;
+    background: rgba(34, 197, 94, 0.15);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.chord-display-panel {
+    background: linear-gradient(to bottom, #090d10, #131a21);
+    border: 1px solid #2a3744;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.chord-info-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.chord-label {
+    font-size: 0.75rem;
+    color: #8a99ad;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chord-name {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #00bcd4;
+    min-height: 35px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
+}
+
+.notes-detected {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    background: #0d1318;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #22303c;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* ========================================
+   CONTROLES PRINCIPALES
+   ======================================== */
+.controls-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    background: linear-gradient(to bottom, #252b33, #1c2229);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #36414f;
+    align-items: flex-end;
+    margin-bottom: 15px;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 140px;
+}
+
+label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+select {
+    background: linear-gradient(to bottom, #1e242b, #11151a);
+    color: #fff;
+    border: 1px solid #3b4754;
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(255,255,255,0.05);
+}
+
+select:hover {
+    border-color: #00bcd4;
+}
+
+select option {
+    background-color: #1a202c;
+    color: #ffffff;
+    padding: 8px;
+}
+
+/* ========================================
+   SLIDERS VERTICALES CON RAYITAS
+   ======================================== */
+.vertical-slider-group {
+    align-items: center;
+    text-align: center;
+    min-width: 90px;
+    flex: 0 0 90px;
+}
+
+.vertical-slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    height: 110px;
+}
+
+.vertical-slider-value {
+    font-size: 0.75rem;
+    color: #00bcd4;
+    text-shadow: 0 0 4px rgba(0,188,212,0.3);
+    background: #0d1318;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #22303c;
+    min-width: 35px;
+    text-align: center;
+}
+
+.vertical-slider-wrapper {
+    position: relative;
+    width: 40px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Línea vertical de fondo */
+.vertical-slider-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #1a202c, #0a0d10);
+    border-radius: 2px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+    z-index: 0;
+}
+
+/* Rayitas horizontales (5 niveles) */
+.vertical-slider-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 14px;
+    height: 90px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 16px,
+        #00bcd4 16px,
+        #00bcd4 18px,
+        transparent 18px,
+        transparent 90px
+    );
+    z-index: 0;
+    opacity: 0.7;
+}
+
+.vertical-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90px;
+    height: 6px;
+    border-radius: 3px;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    transform: rotate(-90deg);
+    transform-origin: center center;
+    position: absolute;
+    z-index: 1;
+}
+
+.vertical-slider::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 6px;
+}
+
+.vertical-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c 70%);
+    border: 2px solid #00bcd4;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 8px rgba(0,188,212,0.4);
+    margin-top: -8px;
+}
+
+.vertical-slider::-moz-range-track {
+    background: transparent;
+    height: 6px;
+}
+
+.vertical-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c 70%);
+    border: 2px solid #00bcd4;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 8px rgba(0,188,212,0.4);
+}
+
+/* ========================================
+   SECCIÓN PAD CON KNOB
+   ======================================== */
+.pad-section-group {
+    border: 1px solid #36414f;
+    padding: 10px;
+    border-radius: 8px;
+    background: linear-gradient(to bottom, #2a1515, #221212);
+    min-width: 150px;
+    flex: 0 0 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+}
+
+.pad-title {
+    color: #ff8c00 !important;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.pad-controls-top {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pad-controls-top button {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background: linear-gradient(to bottom, #555, #333);
+    color: #fff;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+}
+
+.pad-controls-top select {
+    background: linear-gradient(to bottom, #1e242b, #11151a);
+    color: #fff;
+    border: 1px solid #3b4754;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.pad-knob-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.pad-knob-label {
+    font-size: 0.7rem;
+    color: #94a3b8;
+}
+
+.pad-knob {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c 70%);
+    border: 2px solid #64748b;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255,255,255,0.2), inset 0 -2px 3px rgba(0,0,0,0.6);
+    transition: border-color 0.2s;
+}
+
+.pad-knob:hover {
+    border-color: #ff8c00;
+}
+
+.pad-knob-indicator {
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background: #ff8c00;
+    border-radius: 2px;
+    top: 3px;
+    left: calc(50% - 1.5px);
+    transform-origin: bottom center;
+    transform: translateX(-50%);
+    box-shadow: 0 0 6px #ff8c00;
+    transition: transform 0.2s ease;
+}
+
+.pad-knob-value {
+    font-size: 0.75rem;
+    color: #ff8c00;
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(255,140,0,0.4);
+    min-width: 15px;
+}
+
+/* ========================================
+   PIANO (Estilo de referencia)
+   ======================================== */
+.piano-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.piano {
+    display: block;
+    position: relative;
+    background: linear-gradient(to bottom, #0a0d10, #000000);
+    padding: 12px 10px;
+    border-radius: 8px;
+    height: 200px;
+    box-shadow: inset 0 10px 20px rgba(0,0,0,0.9), 0 8px 16px rgba(0,0,0,0.5);
+    border: 1px solid #222b35;
+}
+
+.key {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-sizing: border-box;
+    transition: background 0.1s, box-shadow 0.1s;
+}
+/* Tamaño para las letras de las teclas negras */
+.key.black span {
+    font-size: 0.8rem; 
+}
+
+.white {
+    width: 36px;
+    height: 180px;
+    background: linear-gradient(to bottom, #eeeeee 0%, #ffffff 70%, #dcdcdc 100%);
+    border: 1px solid #9ca3af;
+    color: #4b5563;
+    z-index: 1;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 6px rgba(0,0,0,0.4);
+}
+
+.white:hover {
+    background: linear-gradient(to bottom, #e2e8f0, #f8fafc);
+}
+
+.white.active {
+    background: linear-gradient(to bottom, #00acc1, #00bcd4) !important;
+    color: #000 !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4), 0 0 12px #00bcd4 !important;
+}
+
+.black {
+    width: 22px;
+    height: 110px;
+    background: linear-gradient(to bottom, #374151 0%, #111827 30%, #030712 100%);
+    color: #9ca3af;
+    z-index: 3;
+    border-radius: 0 0 3px 3px;
+    border: 1px solid #000;
+    font-size: 0.5rem;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 4px 6px rgba(0,0,0,0.7);
+}
+
+.black:hover {
+    background: linear-gradient(to bottom, #4b5563, #1f2937);
+}
+
+.black.active {
+    background: linear-gradient(to bottom, #f97316, #ea580c) !important;
+    color: #fff !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 0 12px #ff5722 !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-group, .vertical-slider-group, .pad-section-group {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+    
+    .vertical-slider-container {
+        flex-direction: row;
+        height: auto;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .vertical-slider-wrapper {
+        width: 90px;
+        height: 40px;
+    }
+    
+    .vertical-slider {
+        width: 90px;
+        height: 6px;
+        transform: none;
+        position: relative;
+    }
+    
+    .vertical-slider-wrapper::before {
+        width: 100%;
+        height: 4px;
+        top: 50%;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        transform: translateY(-50%);
+    }
+    
+    .vertical-slider-wrapper::after {
+        width: 90px;
+        height: 14px;
+        top: 50%;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        transform: translateY(-50%);
+        background: repeating-linear-gradient(
+            to right,
+            transparent 0px,
+            transparent 16px,
+            #00bcd4 16px,
+            #00bcd4 18px,
+            transparent 18px,
+            transparent 90px
+        );
+    }
+    
+    .piano {
+        height: 180px;
+    }
+    
+    .white {
+        height: 160px;
+    }
+    
+    .black {
+        height: 95px;
+    }
+}
+.staff-container {
+    background: #0a0d10;
+    border: 1px solid #222b35;
+    border-radius: 8px;
+    padding: 5px;
+    margin-top: 5px;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#music-staff {
+    display: block;
+    max-width: 100%;
+    margin-top: 30px;
+}
+/* ========================================
+   BOTÓN DE SUSTAIN
+   ======================================== */
+.sustain-button-group {
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+    flex: 0 0 100px;
+}
+
+.sustain-btn-off, .sustain-btn-on {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: 1px solid #555;
+    transition: all 0.2s;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.sustain-btn-off {
+    background: linear-gradient(to bottom, #555, #333);
+    color: #fff;
+}
+
+.sustain-btn-off:hover {
+    background: linear-gradient(to bottom, #666, #444);
+    border-color: #00bcd4;
+}
+
+.sustain-btn-on {
+    background: linear-gradient(to bottom, #00bcd4, #0097a7);
+    color: #000;
+    border-color: #00bcd4;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+.sustain-btn-on:hover {
+    background: linear-gradient(to bottom, #26c6da, #00acc1);
+}
+.paypal-donate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #0070ba; /* Color clásico de PayPal o puedes usar tu acento */
+            color: #ffffff;
+            padding: 10px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3);
+        }
+
+        .paypal-donate-btn:hover {
+            background-color: #005ea6;
+            transform: translateY(-2px);
+        }
+
+        .paypal-donate-btn svg {
+            fill: #ff4757; /* Hace que el icono de corazón destaque en rojo */
+            stroke:#ff4757;
+        }
