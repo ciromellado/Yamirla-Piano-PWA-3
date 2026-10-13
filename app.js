@@ -282,7 +282,13 @@ function createReverbImpulse() {
 if (presetSelect) {
     presetSelect.addEventListener('change', async () => {
         initAudioEngine();
-        await loadPresetSamples(presetSelect.value);
+        const selectedPreset = presetSelect.value;
+        
+        // 1. Feedback visual inmediato en la interfaz
+        if (statusDiv) statusDiv.textContent = `⏳ Cambiando a ${selectedPreset}...`;
+        
+        // 2. Carga en segundo plano sin bloquear la UI inmediatamente
+        await loadPresetSamples(selectedPreset);
     });
 }
 
