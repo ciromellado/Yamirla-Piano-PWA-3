@@ -20,10 +20,20 @@
         <div class="title-bar">
             <h1>🎹 Yamirla Piano PWA-3</h1>
             <div id="status">✅ Listo para tocar</div>
-         <a href="https://paypal.me/Donacion472" target="_blank" rel="noopener noreferrer" class="paypal-donate-btn"            title="Apoya este proyecto con una donación">
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            Apoyame con ($1)
-        </a>
+        
+         <div class="actions-buttons-group">
+                <!-- Botón de Colaboradores -->
+                <button id="btn-collaborators" class="paypal-donate-btn collaborators-btn" title="Ver lista de colaboradores del proyecto">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Colaboradores
+                </button>
+
+                <!-- Botón de PayPal -->
+                <a href="https://paypal.me/Donacion472" target="_blank" rel="noopener noreferrer" class="paypal-donate-btn" title="Apoya este proyecto con una donación">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    Apoyame con ($1)
+                </a>
+            </div>
         </div>
          <!-- Tamaño del pentagrama: -->
        <div class="staff-container">
@@ -166,6 +176,30 @@
 
         <div class="piano-wrapper" id="piano-wrapper">
             <div class="piano" id="keyboard"></div>
+        </div>
+    </div>
+    <!-- ========================================== -->
+    <!-- POPUP FLOTANTE DE COLABORADORES (FUERA DEL VST) -->
+    <!-- ========================================== -->
+    <div id="collaborators-modal" class="collaborators-modal-overlay">
+        <div class="collaborators-modal-content" id="modal-box">
+            <div class="modal-header">
+                <h3>⭐ Colaboradores del Proyecto</h3>
+                <button id="btn-close-modal" class="close-modal-btn" title="Cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="collaborators-intro">
+                    <p>¡Muchísimas gracias de corazón a todas las personas que hacen posible este proyecto con su apoyo, donaciones y colaboración! 🎹✨</p>
+                </div>
+                
+                <ul class="collaborators-list">
+                    <li>
+                        <span class="collab-name">Ciro Armando Mellado</span>
+                        <span class="collab-badge">Fundador / Dev</span>
+                    </li>
+                    <!-- Agrega aquí más colaboradores en el futuro si lo deseas -->
+                </ul>
+            </div>
         </div>
     </div>
 
