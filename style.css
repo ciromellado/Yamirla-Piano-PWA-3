@@ -625,3 +625,150 @@ select option {
             fill: #ff4757; /* Hace que el icono de corazón destaque en rojo */
             stroke:#ff4757;
         }
+        /* ========================================
+   POPUP FLOTANTE INDEPENDIENTE
+   ======================================== */
+.actions-buttons-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.collaborators-btn {
+    background-color: #d97706;
+    border: none;
+    cursor: pointer;
+}
+
+.collaborators-btn:hover {
+    background-color: #b45309;
+}
+
+.collaborators-btn svg {
+    fill: #fef3c7;
+    stroke: #fef3c7;
+}
+
+/* Overlay que cubre la pantalla completa de forma flotante */
+.collaborators-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 99999; /* Asegura que esté por encima de cualquier elemento del piano */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.collaborators-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Caja central del popup */
+.collaborators-modal-content {
+    background: linear-gradient(145deg, #2a313a, #1a1e23);
+    color: #e0e0e0;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    border: 1px solid #475569;
+    transform: scale(0.85);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.collaborators-modal-overlay.active .collaborators-modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #00bcd4;
+    font-size: 1.1rem;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+    color: #ffffff;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.collaborators-intro p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.collaborators-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.collaborators-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+}
+
+.collab-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.collab-badge {
+    font-size: 0.75rem;
+    background: rgba(0, 188, 212, 0.15);
+    color: #00bcd4;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 188, 212, 0.3);
+}
