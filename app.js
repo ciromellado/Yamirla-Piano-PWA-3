@@ -856,3 +856,39 @@ function handleIncomingMidiMessage(event) {
 
 if (midiInputSelect) midiInputSelect.addEventListener('change', connectInput);
 if (midiOutputSelect) midiOutputSelect.addEventListener('change', connectOutput);
+// ==========================================
+// CONTROL DEL POPUP FLOTANTE DE COLABORADORES
+// ==========================================
+const btnCollaborators = document.getElementById('btn-collaborators');
+const collaboratorsModal = document.getElementById('collaborators-modal');
+const modalBox = document.getElementById('modal-box');
+const btnCloseModal = document.getElementById('btn-close-modal');
+
+function toggleCollaboratorsModal(open) {
+    const isOpen = open !== undefined ? open : !collaboratorsModal.classList.contains('active');
+    if (isOpen) {
+        collaboratorsModal.classList.add('active');
+    } else {
+        collaboratorsModal.classList.remove('active');
+    }
+}
+
+if (btnCollaborators) {
+    btnCollaborators.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleCollaboratorsModal();
+    });
+}
+
+if (btnCloseModal) {
+    btnCloseModal.addEventListener('click', () => toggleCollaboratorsModal(false));
+}
+
+// Cierra el popup si se hace clic en cualquier parte fuera de la ventanita del modal
+if (collaboratorsModal) {
+    collaboratorsModal.addEventListener('click', (e) => {
+        if (!modalBox.contains(e.target)) {
+            toggleCollaboratorsModal(false);
+        }
+    });
+}
