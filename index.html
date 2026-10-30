@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yamirla Piano PWA-3</title>
+    <meta name="theme-color" content="#1e1e1e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/webp" href="image/icon-192.webp">
+</head>
+<body>
+    
+    <h2 style="color: #000000; margin-bottom: 10px;">Kharla Web Solution</h2>
+
+    <div class="vst-container">
+        <div class="title-bar">
+            <h1>🎹 Yamirla Piano PWA-3</h1>
+            <div id="status">✅ Listo para tocar</div>
+        
+         <div class="actions-buttons-group">
+                <!-- Botón de Colaboradores -->
+                <button id="btn-collaborators" class="paypal-donate-btn collaborators-btn" title="Ver lista de colaboradores del proyecto">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Colaboradores
+                </button>
+
+                <!-- Botón de PayPal -->
+                <a href="https://paypal.me/Donacion472" target="_blank" rel="noopener noreferrer" class="paypal-donate-btn" title="Apoya este proyecto con una donación">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    Apoyame con ($1)
+                </a>
+            </div>
+        </div>
+         <!-- Tamaño del pentagrama: -->
+       <div class="staff-container">
+        <canvas id="music-staff" width="800" height="180"></canvas>
+       </div>
+
+        <div class="chord-display-panel">
+            <div class="chord-info-group">
+                <span class="chord-label">Acorde Detectado</span>
+                <div id="chord-name" class="chord-name">Esperando notas...</div>
+            </div>
+            <div class="chord-info-group">
+                <span class="chord-label">Notas Activas</span>
+                <div id="notes-detected" class="notes-detected">Ninguna</div>
+            </div>
+        </div>
+        
+        <div class="controls-row">
+            <div class="control-group">
+                <label for="midi-input">Entrada MIDI USB:</label>
+                <select id="midi-input">
+                    <option value="">Buscando...</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="midi-output">Salida MIDI USB:</label>
+                <select id="midi-output">
+                    <option value="">(Ninguna)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="preset">Tipo de Sonido:</label>
+                <select id="preset">
+                    <optgroup label="Pianos Acústicos">
+                        <option value="piano-korg">🎹 Korg Grand Piano (Samples Reales)</option>
+                        <option value="piano-kawai">Kawai Grand Piano</option>
+                        <option value="bright">Bright Piano Yamaha</option>
+                        <option value="motif">Motif sustain Piano</option>
+                    </optgroup>
+                    <optgroup label="Pianos Eléctricos">
+                        <option value="wurlitzer">Electric Piano</option>
+                        <option value="rhodes-piano">Rhodes Piano</option>
+                    </optgroup>
+                    <optgroup label="Guitarras">
+                        <option value="acustic-guitar">Guitarra Acústica</option>
+                        <option value="donnys-guitar">Donnys-Guitar</option>
+                    </optgroup>
+                    <optgroup label="Acordeones Colombianos">
+                        <option value="accordion_vallenato">Acordeón Hohner Corona</option>
+                        <option value="accordion_cumbia">Acordeón Sabanero</option>
+                    </optgroup>
+                    <optgroup label="Órganos">
+                        <option value="hammond">Órgano Hammond 1</option>
+                        <option value="organ-jazz">Órgano de Jazz</option>
+                    </optgroup>
+                    <optgroup label="Cuerdas (Strings)">
+                        <option value="string-Roland">String-Roland</option>
+                    </optgroup>
+                    <optgroup label="Metales y Vientos">
+                        <option value="trumpet">Trompeta (Brass)</option>
+                        <option value="trombone">Trombón (Deep Brass)</option>
+                    </optgroup>
+                </select>
+            </div>
+            
+            <!-- Slider Vertical de Volumen Master -->
+            <div class="control-group vertical-slider-group">
+                <label>Volumen Master</label>
+                <div class="vertical-slider-container">
+                    <span class="vertical-slider-value" id="val-volume">3</span>
+                    <div class="vertical-slider-wrapper">
+                        <input type="range" id="slider-volume" min="1" max="5" value="3" class="vertical-slider" orient="vertical">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Vertical de Reverberación -->
+            <div class="control-group vertical-slider-group">
+                <label>Reverberación</label>
+                <div class="vertical-slider-container">
+                    <span class="vertical-slider-value" id="val-reverb">2</span>
+                    <div class="vertical-slider-wrapper">
+                        <input type="range" id="slider-reverb" min="1" max="5" value="2" class="vertical-slider" orient="vertical">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Vertical de Decay -->
+            <div class="control-group vertical-slider-group">
+                <label>Efecto Decay</label>
+                <div class="vertical-slider-container">
+                    <span class="vertical-slider-value" id="val-decay">OFF</span>
+                    <div class="vertical-slider-wrapper">
+                        <input type="range" id="slider-decay" min="1" max="5" value="1" class="vertical-slider" orient="vertical">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Vertical de Delay -->
+            <div class="control-group vertical-slider-group">
+                <label>Efecto Delay</label>
+                <div class="vertical-slider-container">
+                    <span class="vertical-slider-value" id="val-delay">OFF</span>
+                    <div class="vertical-slider-wrapper">
+                        <input type="range" id="slider-delay" min="1" max="5" value="1" class="vertical-slider" orient="vertical">
+                    </div>
+                </div>
+            </div>
+            <div class="control-group sustain-button-group">
+               <label>Sustain</label>
+                <button id="btn-sustain" class="sustain-btn-off">OFF</button>
+             </div>
+
+            <!-- SECCIÓN: Yamirla Synth Pad -->
+            <div class="control-group pad-section-group">
+                <label class="pad-title">Yamirla Synth Pad</label>
+                <div class="pad-controls">
+                    <button id="btn-pad-toggle" class="pad-btn-off">OFF</button>
+                    <select id="pad-preset">
+                        <option value="warm_pad">Warm Pad</option>
+                        <option value="soft_strings">Soft Strings</option>
+                        <option value="analog_sweep">Analog Sweep</option>
+                    </select>
+                </div>
+                
+                <!-- Botón Redondo de Volumen Pad -->
+                <div class="pad-knob-row">
+                    <span class="pad-knob-label">Vol Pad</span>
+                    <div class="pad-knob" id="knob-pad-vol" data-level="3" title="Clic para girar (1-5)">
+                        <div class="pad-knob-indicator"></div>
+                    </div>
+                    <span class="pad-knob-value" id="val-pad-vol">3</span>
+                </div>
+            </div>
+            <!-- FIN SECCIÓN -->
+
+        </div>
+        <!-- ========================================== -->
+<!-- SECCIÓN: GRABAR / REPRODUCIR / MIDI       -->
+<!-- ========================================== -->
+       <div class="control-group record-section-group">
+    <label class="pad-title">🎬 Grabación & MIDI</label>
+
+    <!-- Fila 1: REC | Pausa | Play | Stop   ||   JSON | MIDI | Importar -->
+    <div class="record-controls-row">
+        <div class="record-controls">
+            <button id="btn-record" class="record-btn-off" title="Iniciar grabación">⏺ REC</button>
+            <button id="btn-pause" class="playback-btn" title="Pausar/Reanudar" disabled>⏸ Pausa</button>
+            <button id="btn-playback" class="playback-btn" title="Reproducir" disabled>▶ Play</button>
+            <button id="btn-stop" class="playback-btn" title="Detener" disabled>⏹ Stop</button>
+        </div>
+        <div class="record-controls" style="border-left:1px solid #444;padding-left:8px;margin-left:6px;">
+            <button id="btn-export-json" class="playback-btn" title="Exportar JSON" disabled>💾 JSON</button>
+            <button id="btn-export-midi" class="playback-btn" title="Exportar MIDI" disabled>📤 MIDI</button>
+            <label class="playback-btn import-label" title="Importar .mid">
+                📥 Importar
+                <input type="file" id="midi-file-input" accept=".mid,.midi" style="display:none;">
+            </label>
+        </div>
+    <div class="record-controls" style="margin-top:6px;">
+    <label style="font-size:0.8rem;color:#aaa;">Velocidad:</label>
+    <select id="select-speed" style="font-size:0.9rem;padding:2px 4px;background:#2a2a2a;color:#FFFFFF;border:1px solid #555;border-radius:4px;">
+        <option value="1">0.1× (Estudio)</option>
+        <option value="3">0.3× (Lento)</option>
+        <option value="5">0.5× (Mitad)</option>
+        <option value="7">0.7×</option>
+        <option value="10" selected>1.0× (Normal)</option>
+    </select>
+</div>   
+    <div id="rec-status" class="rec-status">Listo</div>
+</div>
+        <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar" title="Clic para buscar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <span class="progress-time" id="progress-time">0.0s / 0.0s</span>
+</div>   
+<!-- FIN SECCIÓN -->   
+
+        <div class="piano-wrapper" id="piano-wrapper">
+            <div class="piano" id="keyboard"></div>
+        </div>
+    </div>
+    <!-- ========================================== -->
+    <!-- POPUP FLOTANTE DE COLABORADORES (FUERA DEL VST) -->
+    <!-- ========================================== -->
+    <div id="collaborators-modal" class="collaborators-modal-overlay">
+        <div class="collaborators-modal-content" id="modal-box">
+            <div class="modal-header">
+                <h3>⭐ Colaboradores del Proyecto</h3>
+                <button id="btn-close-modal" class="close-modal-btn" title="Cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="collaborators-intro">
+                    <p>¡Muchísimas gracias, Dios ama al dador alegre, 2da de Corintio capitulo 9 verso 7, Dios te bendiga  🎹✨</p>
+                </div>
+                
+                <ul class="collaborators-list">
+                    <li>
+                        <span class="collab-name">Ciro Armando Mellado</span>
+                        <span class="collab-badge">Fundador / Dev</span>
+                    </li>
+                    <!-- Agrega aquí más colaboradores en el futuro si lo deseas -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((reg) => {
+                        console.log('✅ Service Worker registrado con éxito:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.log('❌ Error al registrar el Service Worker:', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
