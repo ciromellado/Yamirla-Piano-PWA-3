@@ -1,40 +1,109 @@
-<img width="942" height="556" alt="Piano-Yamirla-PWA-3" src="https://github.com/user-attachments/assets/a8393b0c-153b-4680-9a04-69339cb9fd45" />
+<img width="973" height="641" alt="CapturaYamirla" src="https://github.com/user-attachments/assets/46760e3e-5692-481b-8ce3-dc662fe59b26" />
 
 
 # 🎹 Yamirla Piano PWA-3
 
-> **Yamirla Piano PWA-3** es una estación de trabajo musical y sintetizador web progresivo (PWA) de nivel profesional, diseñada para ofrecer una experiencia de interpretación musical de ultra baja latencia directamente desde el navegador, sin instalaciones pesadas.
+> **El piano online más completo y potente de la red.**
+> Un instrumento virtual de nivel profesional, 100% en tu navegador, sin instalación.
+
+
+## ✨ ¿Por qué es el mejor piano online?
+
+| Característica | Yamirla Piano PWA-3 | Otros pianos web |
+|---|:---:|:---:|
+| Samples reales de piano (Korg) | ✅ | ❌ |
+| 14 presets de instrumentos | ✅ | ❌ |
+| Grabación + Exportación MIDI | ✅ | ❌ |
+| Importación de archivos .mid | ✅ | ❌ |
+| Velocidad de reproducción (0.1×–1×) | ✅ | ❌ |
+| Barra de progreso con seek | ✅ | ❌ |
+| Entrada/Salida MIDI USB | ✅ | ❌ |
+| Efectos: Reverb, Decay, Delay | ✅ | ❌ |
+| Sustain | ✅ | ❌ |
+| Synth Pad con 3 presets | ✅ | ❌ |
+| Detección de acordes en tiempo real | ✅ | ❌ |
+| Pentagrama visual (canvas) | ✅ | ❌ |
+| PWA instalable + Offline | ✅ | ❌ |
+| Knob interactivo de volumen | ✅ | ❌ |
 
 ---
 
-## ✨ Características Principales
+## 🚀 Funcionalidades
 
-* 🎼 **Visualización de Pentagrama en Vivo:** Detección e iluminación en tiempo real de notas activas en Clave de Sol y Clave de Fa sobre un lienzo interactivo.
-* 🧠 **Reconocimiento Avanzado de Acordes:** Identificación automática de acordes complejos, acordes abiertos e inversiones musicales mientras tocas.
-* 🎹 **Soporte MIDI Nativo (Web MIDI API):** Conexión Plug & Play con teclados USB y controladores físicos, con soporte completo para pedal de *sustain* (CC 64).
-* 🎛️ **Efectos DSP Profesionales:**
-  * **Reverberación de Impulsos:** Procesamiento convolutivo para acústicas de sala naturales.
-  * **Efecto Decay Regulable:** Envolventes ajustables para el desvanecimiento de las notas.
-  * **Delay con Feedback:** Retardo estéreo con control de realimentación y volumen.
-* 🎵 **Yamirla Synth Pad:** Capa de sintetizador híbrido de fondo (Warm Pad, Soft Strings) para dar texturas atmosféricas a tus melodías.
-* 📂 **Presets Multi-Instrumento:** Muestras de audio de alta fidelidad para pianos acústicos (Korg, Kawai), pianos eléctricos (Wurlitzer, Rhodes), guitarras, acordeones y órganos.
-* ⚡ **Tecnología PWA Offline:** Funciona sin conexión a internet gracias a su Service Worker optimizado con caché dinámica de muestras de audio.
+### 🎵 Instrumentos (14 presets)
+
+- **Pianos Acústicos:** Korg Grand (samples reales), Kawai Grand, Bright Yamaha, Motif Sustain
+- **Pianos Eléctricos:** Wurlitzer, Rhodes
+- **Guitarras:** Acústica, Donnys-Guitar
+- **Acordeones Colombianos:** Hohner Corona (Vallenato), Sabanero (Cumbia)
+- **Órganos:** Hammond 1, Jazz
+- **Cuerdas:** String-Roland
+- **Metales:** Trompeta, Trombón
+
+### 🎬 Grabación & MIDI
+
+- ⏺ **Grabar** notas tocadas en tiempo real
+- ▶ **Reproducir** / ⏸ **Pausar** / ⏹ **Detener**
+- 💾 **Exportar JSON** (estructura de notas + timestamps)
+- 📤 **Exportar MIDI** (`.mid` compatible con cualquier DAW)
+- 📥 **Importar MIDI** (carga archivos `.mid` / `.midi`)
+- 🎚️ **Velocidad de reproducción:** 0.1× (Estudio) → 1.0× (Normal)
+- 📊 **Barra de progreso** con *click-to-seek*
+
+### 🎛️ Efectos y Control
+
+- **Volumen Master** (slider vertical 1–5)
+- **Reverberación** (slider vertical 1–5)
+- **Decay** (slider vertical OFF–5)
+- **Delay** (slider vertical OFF–5)
+- **Sustain** (toggle ON/OFF)
+
+### 🎹 Synth Pad
+
+- Toggle ON/OFF
+- 3 presets: *Warm Pad*, *Soft Strings*, *Analog Sweep*
+- **Knob interactivo** de volumen (clic para girar, 1–5)
+
+### 🎼 Análisis Musical
+
+- **Pentagrama en canvas** con visualización de notas en tiempo real
+- **Detección de acordes** (muestra nombre del acorde + notas activas)
+
+### 🔌 Conectividad MIDI
+
+- **Entrada MIDI USB:** selecciona tu teclado/interfaz
+- **Salida MIDI USB:** envía señales MIDI a dispositivos externos
+
+### 📱 PWA (Progressive Web App)
+
+- **Instalable** en Android, iOS y desktop
+- **Funciona offline** (Service Worker)
+- **Responsive** (móvil, tablet, desktop)
+- Icono webp, theme-color, meta tags Apple
 
 ---
 
-## 🛠️ Tecnologías y Arquitectura
+## 🛠️ Stack Técnico
 
-* **HTML5 Canvas** - Renderizado fluido de partituras y pentagramas.
-* **Web Audio API** - Motor central de síntesis, nodos de ganancia, convolución y efectos en tiempo real.
-* **Web MIDI API** - Comunicación con hardware externo.
-* **Service Workers & Manifest** - Capacidades de aplicación web progresiva e instalación en dispositivos.
+| Capa | Tecnología |
+|------|-----------|
+| Frontend | HTML5, CSS3, Vanilla JavaScript |
+| Audio | Web Audio API + Samples |
+| MIDI | Web MIDI API |
+| PWA | Service Worker + Manifest |
+| Visualización | Canvas API |
+| Analítica | GoatCounter (privacy-friendly) |
+| Despliegue | Estático (GitHub Pages / Netlify / Vercel) |
 
 ---
 
-## 🚀 Despliegue Local / Desarrollo
-
-Si deseas probar el proyecto localmente en tu equipo:
-
-1. Clona este repositorio o descárgalo:
-   ```bash
-   git clone [https://github.com/TU-USUARIO/yamirla-piano-pwa.git](https://github.com/TU-USUARIO/yamirla-piano-pwa.git)
+## 📂 Estructura del Proyecto
+ yamirla-piano-pwa-3/
+├── index.html # Estructura principal
+├── style.css # Estilos y diseño
+├── app.js # Lógica: audio, MIDI, grabación, UI
+├── manifest.json # PWA manifest
+├── sw.js # Service Worker (offline)
+├── image/
+│ └── icon-192.webp # Icono PWA
+└── README.md  
