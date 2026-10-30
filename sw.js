@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Yamirla-piano-v2';
+const CACHE_NAME = 'Yamirla-piano-v3';
 const assetsToCache = [
   'index.html',
   'style.css',
